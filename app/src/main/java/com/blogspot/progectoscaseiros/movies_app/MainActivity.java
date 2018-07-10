@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.blogspot.progectoscaseiros.movies_app.adapter.MoviesAdapter;
 import com.blogspot.progectoscaseiros.movies_app.api.Client;
+import com.blogspot.progectoscaseiros.movies_app.api.Service;
 import com.blogspot.progectoscaseiros.movies_app.model.Movie;
 import com.blogspot.progectoscaseiros.movies_app.model.MoviesResponse;
 
@@ -30,6 +31,7 @@ import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
@@ -93,17 +95,18 @@ public class MainActivity extends AppCompatActivity {
         loadJSON();
     }
     private void loadJSON(){
+        //Getting the values from JSON
         try{
-            if(BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){
-                Toast.makeText(getApplicationContext()."Please obtain the API key", Toast.LENGTH_SHORT).show();
-                pd.dismiss();
-                return;
+            if(BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){ //If there's no API key
+                Toast.makeText(getApplicationContext(). "Please add your API key", Toast.LENGTH_SHORT).show(); //Print this toast text message
+                pd.dismiss(); //No data, then we're out
+                return;//Get out or return
             }
 
-            //HERE
-            Client Client = new Client();
-            Service apiService =
-                    Client.getClient().create(Service.class);
+            //However if there is an API key:
+            Client Client = new Client();   //Call the client
+            Service apiService = //Call the service
+                    Client.getClient().create(Service.class); //Get the client method from client class
             Call<MoviesResponse> call = apiService.getPopularMovies(BuildConfig.THE_MOVIE_DB_API_TOKEN);
             call.enqueue(new Callback<MoviesResponse>() {
                 @Override
