@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 pd.dismiss(); //No data, then we're out
                 return;//Get out or return
             }
-
             //However if there is an API key:
             Client Client = new Client();   //Call the client
             Service apiService = //Call the service
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             call.enqueue(new Callback<MoviesResponse>() {
                 @Override
                 public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-                    List<Movie> movies = response.body().getResults();
+                    List<Movie> movies = response.body().getResults();//gets all the movies list and stores them in the result page
                     Collections.sort(movies, Movie.BY_NAME_ALPHABETICAL);
                     recyclerView.setAdapter(new MoviesAdapter(getApplicationContext(), movies));
                     recyclerView.smoothScrollToPosition(0);
@@ -156,17 +155,17 @@ public class MainActivity extends AppCompatActivity {
                     if (swipeContainer.isRefreshing()){
                         swipeContainer.setRefreshing(false);
                     }
+                    pd.dismiss();
                 }
 
                 @Override
                 public void onFailure(Call<MoviesResponse> call, Throwable t) {
                     Log.d("Error", t.getMessage());
-                    Toast.makeText(MainActivity.this, "Error Fetching Data!", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(MainActivity.this, "Error: Unable to Fetch Data!", Toast.LENGTH_SHORT).show();
                 }
             });
         }catch (Exception e){
-            Log.d("Error", e.getMessage());
+            Log.d("Error", e.getMessage()); //Only shows the error message for the developer
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
