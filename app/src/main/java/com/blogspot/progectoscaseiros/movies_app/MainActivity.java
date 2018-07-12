@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-
     private void initViews(){
         pd = new ProgressDialog(this);
         pd.setMessage("Fetching Movies...");
@@ -94,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         loadJSON();
     }
+
+
+
     private void loadJSON(){
         //Getting the values from JSON
         try{
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     if (swipeContainer.isRefreshing()){
                         swipeContainer.setRefreshing(false);
                     }
-
+                    pd.dismiss();
                 }
 
                 @Override
@@ -187,8 +189,8 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    @Override
+/*
+    //@Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
         Log.d(LOG_TAG, "Preferences updated");
         checkSortOrder();
@@ -238,4 +240,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }.execute();
     }
-        }
+    */
+}
