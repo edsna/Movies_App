@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    private void initViews(){
+    private void initViews2(){
         pd = new ProgressDialog(this);
         pd.setMessage("Fetching Movies...");
         pd.setCancelable(false);
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         //Getting the values from JSON
         try{
             if(BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){ //If there's no API key
-                Toast.makeText(getApplicationContext(). "Please add your API key", Toast.LENGTH_SHORT).show(); //Print this toast text message
+                Toast.makeText(getApplicationContext(), "Please add your API key", Toast.LENGTH_SHORT).show(); //Print this toast text message
                 pd.dismiss(); //No data, then we're out
                 return;//Get out or return
             }
@@ -189,56 +189,4 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-/*
-    //@Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
-        Log.d(LOG_TAG, "Preferences updated");
-        checkSortOrder();
-    }
-
-    private void checkSortOrder(){
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String sortOrder = preferences.getString(
-                this.getString(R.string.pref_sort_order_key),
-                this.getString(R.string.pref_most_popular)
-        );
-        if (sortOrder.equals(this.getString(R.string.pref_most_popular))) {
-            Log.d(LOG_TAG, "Sorting by most popular");
-            loadJSON();
-        } else if (sortOrder.equals(this.getString(R.string.favorite))){
-            Log.d(LOG_TAG, "Sorting by favorite");
-            initViews2();
-        } else{
-            Log.d(LOG_TAG, "Sorting by vote average");
-            loadJSON1();
-        }
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        if (movieList.isEmpty()){
-            checkSortOrder();
-        }else{
-
-            checkSortOrder();
-        }
-    }
-
-    private void getAllFavorite(){
-        new AsyncTask<Void, Void, Void>(){
-            @Override
-            protected Void doInBackground(Void... params){
-                movieList.clear();
-                movieList.addAll(favoriteDbHelper.getAllFavorite());
-                return null;
-            }
-            @Override
-            protected void onPostExecute(Void aVoid){
-                super.onPostExecute(aVoid);
-                adapter.notifyDataSetChanged();
-            }
-        }.execute();
-    }
-    */
 }
