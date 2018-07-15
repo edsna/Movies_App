@@ -1,5 +1,6 @@
 package com.blogspot.progectoscaseiros.movies_app.adapter;
 
+//import android.R;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;

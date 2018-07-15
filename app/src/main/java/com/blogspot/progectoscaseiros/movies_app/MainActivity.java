@@ -1,17 +1,16 @@
 package com.blogspot.progectoscaseiros.movies_app;
 
+//import android.R;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
-import android.preference.PreferenceManager;
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     //Fields/views
     private RecyclerView recyclerView;
     private MoviesAdapter adapter;
@@ -45,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Movies has been Refreshed", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public Activity getActivity(){
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    private void initViews2(){
+    private void initViews(){
         pd = new ProgressDialog(this);
         pd.setMessage("Fetching Movies...");
         pd.setCancelable(false);
@@ -93,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         loadJSON();
     }
-
-
 
     private void loadJSON(){
         //Getting the values from JSON
@@ -189,4 +186,6 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }
