@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-   private void loadJSON1(){
+    private void loadJSON1(){
 
         try{
             if (BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){

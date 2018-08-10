@@ -3,6 +3,8 @@ package com.blogspot.progectoscaseiros.movies_app.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -76,7 +78,11 @@ public class MoviesResponse implements Parcelable {
         dest.writeInt(this.totalPages);
     }
 
-    public MoviesResponse() {
+    public static MoviesResponse parseJSON(String response) {
+        Gson gson = new GsonBuilder().create();
+        MoviesResponse moviesResponse = gson.fromJson(response, MoviesResponse.class);
+        return moviesResponse;
+
     }
 
     protected MoviesResponse(Parcel in) {
@@ -98,3 +104,5 @@ public class MoviesResponse implements Parcelable {
         }
     };
 }
+//Apparently my MovieResponse object is null, it is not getting anything from the json response.
+// I basically have to go find the MoviesResponse object>>figure out why its empty and whats wrong with the
