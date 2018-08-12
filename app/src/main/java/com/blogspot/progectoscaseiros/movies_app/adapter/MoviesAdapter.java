@@ -43,7 +43,8 @@ public class MoviesAdapter  extends RecyclerView.Adapter<MoviesAdapter.MyViewHol
         String poster = "https://image.tmdb.org/t/p/w500" + movieList.get(i).getPosterPath();
 
         Glide.with(mContext)
-                .load(poster)
+                .load(movieList.get(i).getPosterPath())
+                //.load(poster)
                 .placeholder(R.drawable.load)
                 .into(viewHolder.thumbnail);
     }
