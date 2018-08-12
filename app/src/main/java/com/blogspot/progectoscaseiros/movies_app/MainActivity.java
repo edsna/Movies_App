@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity{
     private List<Movie> movieList;
     ProgressDialog pd;
     private SwipeRefreshLayout swipeContainer;
+    private AppCompatActivity activity = MainActivity.this;
     public static final String LOG_TAG = MoviesAdapter.class.getName();
 
     @Override

@@ -44,7 +44,7 @@ public class MoviesAdapter  extends RecyclerView.Adapter<MoviesAdapter.MyViewHol
 
         Glide.with(mContext)
                 .load(movieList.get(i).getPosterPath())
-                //.load(poster)
+                .load(poster)
                 .placeholder(R.drawable.load)
                 .into(viewHolder.thumbnail);
     }
