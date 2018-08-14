@@ -7,8 +7,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -33,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
     //Fields/views
     private RecyclerView recyclerView;
     private MoviesAdapter adapter;
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity{
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         movieList = new ArrayList<>();
+        //if landscape is on point 2/4grid
         adapter = new MoviesAdapter(this, movieList);
 
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        loadJSON();
+        checkSortOrder();
     }
 
     private void loadJSON(){
@@ -133,15 +136,14 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    //Using the API to call the most_rated movies
     private void loadJSON1(){
-
         try{
             if (BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){
                 Toast.makeText(getApplicationContext(), "Please obtain API Key firstly from themoviedb.org", Toast.LENGTH_SHORT).show();
                 pd.dismiss();
                 return;
             }
-
             Client Client = new Client();
             Service apiService =
                     Client.getClient().create(Service.class);
@@ -170,6 +172,9 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -181,12 +186,39 @@ public class MainActivity extends AppCompatActivity{
         switch (item.getItemId()){
             case R.id.menu_settings:
                 Intent intent = new Intent(this, SettingsActivity.class);
-                startActivity(intent);
+                startActivity(intent);//launch settings when menu is clicked
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
+        Log.d(LOG_TAG, "Preferences Have been Updated");
+        checkSortOrder();
+    }
+    private void checkSortOrder(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String sortOrder = preferences.getString(
+                this.getString(R.string.pref_sort_order_key),
+                this.getString(R.string.pref_most_popular)
+        );
+        if(sortOrder.equals(this.getString(R.string.pref_most_popular))){
+            Log.d(LOG_TAG, "Sorting movies by most popular");
+            loadJSON();
+        }else{
+            Log.d(LOG_TAG, "Sorting movies by rating");
+            loadJSON();
+        }
+    }
+    @Override
+    //Checks sort order if the movie list is empty
+    public void onResume(){
+        super.onResume();
+        if(movieList.isEmpty()){
+            checkSortOrder();
+        }else{
 
-
+        }
+    }
 }

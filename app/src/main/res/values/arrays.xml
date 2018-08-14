@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- hosts the sort order for the movies by either most popular/ highest ratings-->
+<resources>
+    <string-array name="desired_sort_order">
+        <item>@string/pref_most_popular</item>
+        <item>@string/pref_highest_rated</item>
+    </string-array>
+    <!--Now we need a pref folder, -where desired order will b stored-->
+</resources>
