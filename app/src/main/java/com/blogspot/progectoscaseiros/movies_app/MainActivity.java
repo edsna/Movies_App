@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -20,6 +21,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.support.design.widget.CoordinatorLayout;
 
 import com.blogspot.progectoscaseiros.movies_app.adapter.MoviesAdapter;
 import com.blogspot.progectoscaseiros.movies_app.api.Client;
@@ -163,7 +165,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 @Override
                 public void onFailure(Call<MoviesResponse> call, Throwable t) {
                     Log.d("Error", t.getMessage());
-                    Toast.makeText(MainActivity.this, "Error: Unable to Fetch Data!", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Error: Unable to Fetch Data!", Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                 }
             });
         }catch (Exception e){
