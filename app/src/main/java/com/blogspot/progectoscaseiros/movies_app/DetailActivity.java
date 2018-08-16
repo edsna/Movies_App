@@ -1,25 +1,18 @@
 package com.blogspot.progectoscaseiros.movies_app;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.blogspot.progectoscaseiros.movies_app.api.Client;
-import com.blogspot.progectoscaseiros.movies_app.model.Movie;
 import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
     //Brings the details of the movie
@@ -68,7 +61,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private void setSupportActionBar(Toolbar toolbar) {
+    public void setSupportActionBar(Toolbar toolbar) {
     }
 
     private void initCollapsingToolbar(){

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private RecyclerView recyclerView;
     private MoviesAdapter adapter;
     private List<Movie> movieList;
-    ProgressDialog pd;
+    private ProgressDialog pd;
     private SwipeRefreshLayout swipeContainer;
     private AppCompatActivity activity = MainActivity.this;
     public static final String LOG_TAG = MoviesAdapter.class.getName();
