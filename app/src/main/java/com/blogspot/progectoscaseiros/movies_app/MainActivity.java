@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -21,7 +20,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.support.design.widget.CoordinatorLayout;
 
 import com.blogspot.progectoscaseiros.movies_app.adapter.MoviesAdapter;
 import com.blogspot.progectoscaseiros.movies_app.api.Client;
@@ -139,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     //Using the API to call the most_rated movies
-    private void loadJSON1(){
+    private void loadJSONTRM(){
         try{
             if (BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){
                 Toast.makeText(getApplicationContext(), "Please obtain API Key firstly from themoviedb.org", Toast.LENGTH_SHORT).show();
@@ -165,9 +163,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 @Override
                 public void onFailure(Call<MoviesResponse> call, Throwable t) {
                     Log.d("Error", t.getMessage());
-                    Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, "Error: Unable to Fetch Data!", Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                    Toast.makeText(MainActivity.this, "Error Fetching Data!", Toast.LENGTH_SHORT).show();
                 }
             });
         }catch (Exception e){
@@ -198,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
-        Log.d(LOG_TAG, "Preferences Have been Updated");
+        Log.d(LOG_TAG, "Preferences have been Updated");
         checkSortOrder();
     }
     private void checkSortOrder(){
@@ -208,11 +204,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 this.getString(R.string.pref_most_popular)
         );
         if(sortOrder.equals(this.getString(R.string.pref_most_popular))){
-            Log.d(LOG_TAG, "Sorting movies by most popular");
+            Log.d(LOG_TAG, "Sorting most popular movies");
             loadJSON();
         }else{
-            Log.d(LOG_TAG, "Sorting movies by rating");
-            loadJSON();
+            Log.d(LOG_TAG, "Sorting movies by rating scale");
+            loadJSONTRM();
         }
     }
     @Override

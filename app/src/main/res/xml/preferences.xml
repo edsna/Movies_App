@@ -4,8 +4,7 @@
     android:title="@string/pref_sort_order_label"
     android:key="@string/pref_sort_order_key"
     android:defaultValue="@string/pref_most_popular"
-    android:entries="@array/desired_sort_order"
-    android:entryValues="@array/desired_sort_order">
-
+    android:entries="@array/pref_sort_order"
+    android:entryValues="@array/pref_sort_order">
 </ListPreference>
 </PreferenceScreen>

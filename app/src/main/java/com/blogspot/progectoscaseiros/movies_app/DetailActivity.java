@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.Objects;
+
 public class DetailActivity extends AppCompatActivity {
     //Brings the details of the movie
     TextView nameOfMovie, plotSynopsis, userRating, releaseDate;
@@ -27,7 +29,7 @@ public class DetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         initCollapsingToolbar();
         //Initalizing views
