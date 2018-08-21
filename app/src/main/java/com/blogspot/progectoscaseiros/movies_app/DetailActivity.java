@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import java.util.Objects;
+import static java.util.Objects.requireNonNull;
 
 public class DetailActivity extends AppCompatActivity {
     //Brings the details of the movie
@@ -29,10 +29,10 @@ public class DetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         initCollapsingToolbar();
-        //Initalizing views
+        //Initalizes views
         imageView = (ImageView) findViewById(R.id.thumbnail_image_header);
         nameOfMovie = (TextView) findViewById(R.id.title);
         plotSynopsis = (TextView) findViewById(R.id.plotsynopsis);
@@ -41,7 +41,7 @@ public class DetailActivity extends AppCompatActivity {
         //Testing if intent has data
         Intent intentForActivity = getIntent();
         if (intentForActivity.hasExtra("original_title")){
-
+            //gets Intents
             String thumbnail = getIntent().getExtras().getString("poster_path");
             String movieName = getIntent().getExtras().getString("original_title");
             String synopsis = getIntent().getExtras().getString("overview");
@@ -57,19 +57,15 @@ public class DetailActivity extends AppCompatActivity {
             plotSynopsis.setText(synopsis);
             userRating.setText(rating);
             releaseDate.setText(dateOfRelease);
-
         }else{
             Toast.makeText(this, "The API has no data", Toast.LENGTH_SHORT).show();
         }
     }
-
-    public void setSupportActionBar(Toolbar toolbar) {
-    }
-
+//Toolbar shows and hides toolbar tittle on scroll
     private void initCollapsingToolbar(){
         final CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("");
+        collapsingToolbarLayout.setTitle(" ");
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
 

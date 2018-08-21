@@ -9,13 +9,15 @@
     tools:context="com.blogspot.progectoscaseiros.movies_app.MainActivity"
     tools:showIn="@layout/activity_detail">
 
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:showInc="@layout/activity_detail">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
@@ -103,8 +105,32 @@
                 android:layout_marginTop="@dimen/layout_margin_top"
                 android:textSize="20sp"
                 android:layout_below="@id/release"/>
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</RelativeLayout>
+
+
+    <!--
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ln">
+
         </LinearLayout>
 
 
-    </ScrollView>
-</RelativeLayout>
+
+                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:="@+id/trailer"
+                android:textSize="30sp"
+                android:text="@string/trailer"
+                app:layout_constraintTop_toBottomOf="@id/releasedate"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+    -->
