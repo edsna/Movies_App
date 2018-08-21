@@ -8,7 +8,7 @@
     android:background="@color/white"
     android:fitsSystemWindows="true">
 
-    <android.support.design.widget.v7.AppBarLayout
+    <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,6 +47,6 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
         </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.v7.AppBarLayout>
+    </android.support.design.widget.AppBarLayout>
     <include layout="@layout/content_detail"/>
 </android.support.design.v7.widget.CoordinatorLayout>
