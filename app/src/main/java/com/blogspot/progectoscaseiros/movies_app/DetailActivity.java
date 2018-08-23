@@ -38,8 +38,8 @@ public class DetailActivity extends AppCompatActivity {
         plotSynopsis = (TextView) findViewById(R.id.plotsynopsis);
         userRating = (TextView) findViewById(R.id.userrating);
         releaseDate = (TextView) findViewById(R.id.releasedate);
-        //Testing if intent has data
-        Intent intentForActivity = getIntent();
+        //Testing if the intent for a particular activity has data
+        Intent intentForActivity = getIntent(); //Ggetting intent from DetailsActivity
         if (intentForActivity.hasExtra("original_title")){
             //gets Intents
             String thumbnail = getIntent().getExtras().getString("poster_path");
@@ -63,8 +63,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 //Toolbar shows and hides toolbar tittle on scroll
     private void initCollapsingToolbar(){
-        final CollapsingToolbarLayout collapsingToolbarLayout =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(" ");
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
