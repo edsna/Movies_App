@@ -38,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
         plotSynopsis = (TextView) findViewById(R.id.plotsynopsis);
         userRating = (TextView) findViewById(R.id.userrating);
         releaseDate = (TextView) findViewById(R.id.releasedate);
+
         //Testing if the intent for a particular activity has data
         Intent intentForActivity = getIntent(); //Ggetting intent from DetailsActivity
         if (intentForActivity.hasExtra("original_title")){
@@ -60,6 +61,9 @@ public class DetailActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "The API has no data", Toast.LENGTH_SHORT).show();
         }
+        //System.out.println("DetailActivity.java = " + TAG);
+       // Log.d("DetailActivity.java", "API endpoint:" + urlToEndpointVariable);
+
     }
 //Toolbar shows and hides toolbar tittle on scroll
     private void initCollapsingToolbar(){
