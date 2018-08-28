@@ -53,7 +53,7 @@ public class DetailActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.thumbnail_image_header);
         nameOfMovie = (TextView) findViewById(R.id.title);
         plotSynopsis = (TextView) findViewById(R.id.plotsynopsis);
-        userRating = (TextView) findViewById(R.id.userrating);
+        userRating = (TextView) findViewById(R.id.userating);
         releaseDate = (TextView) findViewById(R.id.releasedate);
 
         //Testing if the intent for a particular activity has data
@@ -82,6 +82,7 @@ public class DetailActivity extends AppCompatActivity {
             userRating.setText(rating);
             releaseDate.setText(dateOfRelease);
         }else{
+
             Toast.makeText(this, "The API has no data", Toast.LENGTH_SHORT).show();
         }
     }
