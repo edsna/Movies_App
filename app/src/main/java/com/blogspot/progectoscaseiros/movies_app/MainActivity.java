@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -52,13 +53,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         setContentView(R.layout.activity_main);
 
         initViews();    //grabs attributes and styles fro the view
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.main_content);  //refresh when u swype main_activity
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.main_content);  //refresh when u swipe main_activity
         swipeContainer.setColorSchemeResources(android.R.color.holo_orange_dark);   //when u swipe show this orange dark color
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {    //Then do the following
             @Override
             public void onRefresh() {
                 initViews();
-                Toast.makeText(MainActivity.this,"Movies has been Refreshed", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Movies has been Refreshed", Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
         });
     }
@@ -101,7 +103,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         //Getting the values from JSON
         try{
             if(BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){ //If there's no API key
-                Toast.makeText(getApplicationContext(), "Please add your API key", Toast.LENGTH_SHORT).show(); //Print this toast text message
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Please add your API key", Snackbar.LENGTH_LONG);
+                snackbar.show();
                 pd.dismiss(); //No data, then we're out
                 return;//Get out or return
             }
@@ -126,8 +129,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 @Override
                 public void onFailure(Call<MoviesResponse> call, Throwable t) {
                     Log.d("Error", t.getMessage());
-                    Toast.makeText(MainActivity.this, "Error Fetching Data!", Toast.LENGTH_SHORT).show();
-
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Error Fetching Data!", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
             });
         }catch (Exception e){
@@ -140,7 +143,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private void loadJSONTRM(){
         try{
             if (BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){
-                Toast.makeText(getApplicationContext(), "Please obtain API Key firstly from themoviedb.org", Toast.LENGTH_SHORT).show();
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Please obtain API Key firstly from themoviedb.org", Snackbar.LENGTH_LONG);
+                snackbar.show();
                 pd.dismiss();
                 return;
             }
@@ -163,7 +167,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 @Override
                 public void onFailure(Call<MoviesResponse> call, Throwable t) {
                     Log.d("Error", t.getMessage());
-                    Toast.makeText(MainActivity.this, "Error Fetching Data!", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Error Fetching Data!", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
             });
         }catch (Exception e){

@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blogspot.progectoscaseiros.movies_app.model.Movie;
 import com.bumptech.glide.Glide;
@@ -82,8 +82,8 @@ public class DetailActivity extends AppCompatActivity {
             userRating.setText(rating);
             releaseDate.setText(dateOfRelease);
         }else{
-
-            Toast.makeText(this, "The API has no data", Toast.LENGTH_SHORT).show();
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "The API has no data", Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
     }
 //Toolbar shows and hides toolbar tittle on scroll
@@ -113,34 +113,3 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 }
-
-
-
-/*
-Intent intentForActivity = getIntent(); //Ggetting intent from DetailsActivity
-        Movie movie = intentForActivity.getParcelableExtra("movies");
-        if (intentForActivity.hasExtra("original_title")){
-            //gets Intents
-            String thumbnail = getIntent().getExtras().getString("poster_path");
-            String movieName = getIntent().getExtras().getString("original_title");
-            String synopsis = getIntent().getExtras().getString("overview");
-            String rating = getIntent().getExtras().getString("vote_average");
-            String dateOfRelease = getIntent().getExtras().getString("release_date");
-
-            Glide.with(this)
-                    .load(thumbnail)
-                    .placeholder(R.drawable.load)
-                    .into(imageView);
-
-            nameOfMovie.setText(movieName);
-            plotSynopsis.setText(synopsis);
-            userRating.setText(rating);
-            releaseDate.setText(dateOfRelease);
-        }else{
-            Toast.makeText(this, "The API has no data", Toast.LENGTH_SHORT).show();
-        }
-        //System.out.println("DetailActivity.java = " + TAG);
-       // Log.d("DetailActivity.java", "API endpoint:" + urlToEndpointVariable);
-
-    }
- */
