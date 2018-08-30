@@ -33,6 +33,7 @@
                 android:paddingTop="@dimen/movie_title_padding"
                 android:textColor="@color/movie_title"
                 android:textSize="@dimen/movie_title"/>
+                <!--tools:textSize="@dimen/movie_title""-->
 
             <TextView
                 android:id="@+id/userrating"

@@ -10,8 +10,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blogspot.progectoscaseiros.movies_app.model.Movie;
 import com.bumptech.glide.Glide;
@@ -43,6 +45,8 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //ButterKnife.bind(this);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -50,6 +54,8 @@ public class DetailActivity extends AppCompatActivity {
 
         initCollapsingToolbar();
         //Initalizes views
+
+        //@BindView(R.id.thumbnail_image_header) TextView imageView;
         imageView = (ImageView) findViewById(R.id.thumbnail_image_header);
         nameOfMovie = (TextView) findViewById(R.id.title);
         plotSynopsis = (TextView) findViewById(R.id.plotsynopsis);
@@ -82,7 +88,13 @@ public class DetailActivity extends AppCompatActivity {
             userRating.setText(rating);
             releaseDate.setText(dateOfRelease);
         }else{
-            Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "The API has no data", Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), getString(R.string.NoDataOnAPI), Snackbar.LENGTH_LONG);
+            Snackbar okay = snackbar.setAction("Okay", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(DetailActivity.this,"Action Clicked",Toast.LENGTH_LONG);
+                }
+            });
             snackbar.show();
         }
     }

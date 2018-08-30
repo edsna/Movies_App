@@ -20,6 +20,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.blogspot.progectoscaseiros.movies_app.adapter.MoviesAdapter;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             @Override
             public void onRefresh() {
                 initViews();
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Movies has been Refreshed", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), getString(R.string.RefreshMoviesFeedback), Snackbar.LENGTH_LONG);
                 snackbar.show();
             }
         });
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     private void initViews(){
         pd = new ProgressDialog(this);
-        pd.setMessage("Fetching Movies...");
+        pd.setMessage(getString(R.string.Fetching_Movies));
         pd.setCancelable(false);
         pd.show();
 
@@ -103,7 +104,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         //Getting the values from JSON
         try{
             if(BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){ //If there's no API key
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Please add your API key", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), getString(R.string.AddAPIKey), Snackbar.LENGTH_LONG);
+                Snackbar okay = snackbar.setAction("Okay", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this,"Action Clicked",Toast.LENGTH_LONG);
+                    }
+                });
                 snackbar.show();
                 pd.dismiss(); //No data, then we're out
                 return;//Get out or return
@@ -129,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 @Override
                 public void onFailure(Call<MoviesResponse> call, Throwable t) {
                     Log.d("Error", t.getMessage());
-                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Error Fetching Data!", Snackbar.LENGTH_LONG);
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), getString(R.string.ErrFetchingData), Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             });
@@ -143,7 +150,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private void loadJSONTRM(){
         try{
             if (BuildConfig.THE_MOVIE_DB_API_TOKEN.isEmpty()){
-                Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Please obtain API Key firstly from themoviedb.org", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), getString(R.string.ObtainAPI), Snackbar.LENGTH_LONG);
+                Snackbar okay = snackbar.setAction("Okay", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this,"Action Clicked",Toast.LENGTH_LONG);
+                    }
+                });
                 snackbar.show();
                 pd.dismiss();
                 return;
@@ -167,7 +180,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 @Override
                 public void onFailure(Call<MoviesResponse> call, Throwable t) {
                     Log.d("Error", t.getMessage());
-                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), "Error Fetching Data!", Snackbar.LENGTH_LONG);
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), getString(R.string.ErrFetchingData), Snackbar.LENGTH_LONG);
+                    Snackbar okay = snackbar.setAction("Okay", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Toast.makeText(MainActivity.this,"Action Clicked",Toast.LENGTH_LONG);
+                        }
+                    });
                     snackbar.show();
                 }
             });
@@ -199,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s){
-        Log.d(LOG_TAG, "Preferences have been Updated");
+        Log.d(LOG_TAG, getString(R.string.Pref_update));
         checkSortOrder();
     }
     private void checkSortOrder(){
@@ -209,10 +228,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 this.getString(R.string.pref_most_popular)
         );
         if(sortOrder.equals(this.getString(R.string.pref_most_popular))){
-            Log.d(LOG_TAG, "Sorting most popular movies");
+            Log.d(LOG_TAG, getString(R.string.Sorting_M_Pop_Mov));
             loadJSON();
         }else{
-            Log.d(LOG_TAG, "Sorting movies by rating scale");
+            Log.d(LOG_TAG, getString(R.string.SortingMoviesByRatingScale));
             loadJSONTRM();
         }
     }

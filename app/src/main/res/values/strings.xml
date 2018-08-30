@@ -12,4 +12,12 @@
     <string name="pref_highest_rated">Highest Rated</string>
     <string name="Fetching_Movies">Fetching Movies...</string>
     <string name="trailer">Trailer</string>
+    <string name="Pref_update">Preferences have been Updated</string>
+    <string name="Sorting_M_Pop_Mov">Sorting most popular movies</string>
+    <string name="SortingMoviesByRatingScale">Sorting movies by rating scale</string>
+    <string name="ErrFetchingData">Error Fetching Data!</string>
+    <string name="ObtainAPI">Please obtain API Key from www.themoviedb.org first</string>
+    <string name="AddAPIKey">Please add your API key</string>
+    <string name="RefreshMoviesFeedback">Movies have been Refreshed</string>
+    <string name="NoDataOnAPI">The API has no data</string>
 </resources>
