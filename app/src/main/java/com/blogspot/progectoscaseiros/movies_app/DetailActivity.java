@@ -37,6 +37,7 @@ public class DetailActivity extends AppCompatActivity {
     String synopsis;
     String rating;
     String dateOfRelease;
+    String test;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -68,6 +69,7 @@ public class DetailActivity extends AppCompatActivity {
 
         if (intentForActivity.hasExtra("movies")){
             //movie = getIntent().getParcelableExtra("movies");
+            //movie = getIntent().getParcelableExtra("movies");
             movie = intentForActivity.getParcelableExtra("movies");
             //gets Intents
             thumbnail = movie.getPosterPath();
@@ -75,6 +77,7 @@ public class DetailActivity extends AppCompatActivity {
             synopsis = movie.getOverview();
             rating = Double.toString(movie.getVoteAverage());
             dateOfRelease = movie.getReleaseDate();
+
 
             String poster = "https://image.tmdb.org/t/p/w500" + thumbnail;
 
