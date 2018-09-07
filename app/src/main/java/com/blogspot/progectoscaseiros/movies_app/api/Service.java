@@ -5,6 +5,7 @@ import com.blogspot.progectoscaseiros.movies_app.model.MoviesResponse;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Service {
@@ -19,4 +20,7 @@ public interface Service {
 
     @GET("movie/top_rated")   //Retrieves top rated movies page in moviesdb using
     Call<MoviesResponse>getTopRatedMovies(@Query("api_key")String apiKey);
+
+    @GET("movie/{movie_id}/videos")
+    Call<TrailerResponse> getMovieTrailer(@Path("movie_id") int id, @Query("api_key") String apiKey);
 }
