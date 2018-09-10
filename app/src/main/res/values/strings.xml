@@ -20,4 +20,5 @@
     <string name="AddAPIKey">Please add your API key</string>
     <string name="RefreshMoviesFeedback">Movies have been Refreshed</string>
     <string name="NoDataOnAPI">The API has no data</string>
+    <string name="catchInTrailer">Catch In  Trailer</string>
 </resources>

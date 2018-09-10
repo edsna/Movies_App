@@ -1,6 +1,7 @@
 package com.blogspot.progectoscaseiros.movies_app.api;
 
 import com.blogspot.progectoscaseiros.movies_app.model.MoviesResponse;
+import com.blogspot.progectoscaseiros.movies_app.model.TrailerResponse;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
