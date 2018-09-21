@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.progectoscaseiros.movies_app.adapter.TrailerAdapter;
 import com.blogspot.progectoscaseiros.movies_app.api.Client;
 import com.blogspot.progectoscaseiros.movies_app.api.Service;
 import com.blogspot.progectoscaseiros.movies_app.model.Movie;
@@ -45,13 +46,13 @@ public class DetailActivity extends AppCompatActivity {
     private final AppCompatActivity activity = DetailActivity.this;
     private TrailerAdapter adapter;
     private List<Trailer> trailerList;
-    private FavoriteDbHelper favoriteDbHelper;
 
     Movie movie;
     String thumbnail;
     String movieName;
     String synopsis;
     String rating;
+    int movie_id;
     String dateOfRelease;
     String test;
 
@@ -201,6 +202,11 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+}
+
+
+/*
+
     public void saveFavorite() {
         favoriteDbHelper = new FavoriteDbHelper(activity);
         favorite = new Movie();
@@ -214,4 +220,4 @@ public class DetailActivity extends AppCompatActivity {
         favorite.setOverview(synopsis);
         favoriteDbHelper.addFavorite(favorite);
     }
-}
+ */
