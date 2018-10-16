@@ -20,7 +20,7 @@ android {
     buildTypes.each {
         it.buildConfigField('String', 'THE_MOVIE_DB_API_TOKEN', MyTheMovieDBApiToken)
     }
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.2'
 }
 
 dependencies {
