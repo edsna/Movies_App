@@ -3,6 +3,7 @@ package com.blogspot.progectoscaseiros.movies_app.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.progectoscaseiros.movies_app.DetailActivity;
 import com.blogspot.progectoscaseiros.movies_app.R;
 import com.blogspot.progectoscaseiros.movies_app.model.Trailer;
-
 import java.util.List;
 
 public class TrailerAdapter  extends RecyclerView.Adapter<TrailerAdapter.MyViewHolder>{
@@ -62,6 +63,18 @@ public class TrailerAdapter  extends RecyclerView.Adapter<TrailerAdapter.MyViewH
                         mContext.startActivity(intent);
 
                         Toast.makeText(v.getContext(), "You clicked on: " + clickedDataItem.getName(), Toast.LENGTH_SHORT).show();
+/*
+                        Snackbar snackbar = Snackbar.make(findViewById(R.id.main_content), getString(R.string.YouClicked), Snackbar.LENGTH_LONG);
+                        Snackbar okay = snackbar.setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(TrailerAdapter.this,"Action Clicked",Toast.LENGTH_LONG);
+                            }
+                        });
+                        snackbar.show();
+                        */
+
+
                     }
                 }
             });

@@ -14,6 +14,7 @@ public class TrailerResponse {
         return id_trailer;
     }
 
+//Might need this to test below >> public void setId_trailer(int id_trailer)
     public void seIdTrailer(int id_trailer){
         this.id_trailer = id_trailer;
     }

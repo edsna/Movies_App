@@ -168,12 +168,13 @@ public class DetailActivity extends AppCompatActivity {
             }
             Client Client = new Client();
             Service apiService = Client.getClient().create(Service.class);  //Call client
-            Call<TrailerResponse> call = apiService.getMovieTrailer(movie_id, BuildConfig.THE_MOVIE_DB_API_TOKEN);
+            Call<TrailerResponse> call = apiService.getMovieTrailer (movie_id, BuildConfig.THE_MOVIE_DB_API_TOKEN);
             call.enqueue(new Callback<TrailerResponse>() {
                 @Override
                 public void onResponse(Call<TrailerResponse> call, Response<TrailerResponse> response) {
-                    List<Trailer> Trailer = response.body().getResults();
-                    recyclerView.setAdapter(new TrailerAdapter(getApplicationContext(), Trailer));
+                    
+                    List<Trailer> trailer = response.body().getResults();
+                    recyclerView.setAdapter(new TrailerAdapter(getApplicationContext(), trailer));
                     recyclerView.smoothScrollToPosition(0);
                 }
                 @Override
@@ -220,4 +221,15 @@ public class DetailActivity extends AppCompatActivity {
         favorite.setOverview(synopsis);
         favoriteDbHelper.addFavorite(favorite);
     }
+
+
+
+
+
+    ANSWER TO ROWLAND
+    Hi @RowlandO  and thank you, Please  find the snapset below, I checked my Trailer.java, TrailerResponse.java, DetailActivity.java  TrailerAdapter.java and trailer_card.xml to see if I might have mispelled or mistakenly changed the name of my trailer List or something but I couldn't really find anything suspicious,
+
  */
+
+
+
